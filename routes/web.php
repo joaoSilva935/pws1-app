@@ -31,6 +31,15 @@ Route::get('/perfil', function () {
     ]);
 });
 
+Route::get('/perfil/{interesse}', function (string $interesse) {
+    $interesses = ['Laravel', 'MySQL', 'PHP'];
+
+    return in_array($interesse, $interesses)
+        ? "$interesse está na minha lista de interesses."
+        : "$interesse não está na minha lista de interesses.";
+    
+});
+
 Route::get('/ola/{nome}/{curso}', function (string $nome, string $curso) {
     return e($nome) . " está no curso de " . e($curso) . ".";
 });
@@ -42,3 +51,7 @@ Route::get('/saudacao/{nome?}', function (?string $nome = null) {
 Route::get('/dobro/{numero}', function (int $numero) {
     return 'O dobro de ' . e($numero) . ' é ' . e($numero * 2);
 })->whereNumber('number');
+
+Route::get('/sobre', function() {
+    return view('sobre');
+});
