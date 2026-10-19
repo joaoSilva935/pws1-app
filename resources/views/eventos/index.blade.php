@@ -24,6 +24,7 @@
                     </div>
                     <div>
                         <p><a href="/eventos?tipo=palestra">Palestras</a></p>
+                        <p><a href="/eventos/proximos">Próximos eventos</a></p>
                     </div>
                     <div>
                         <p><a href="/eventos?tipo=hackathon">Hackathons</a></p> 

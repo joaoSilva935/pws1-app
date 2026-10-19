@@ -116,6 +116,26 @@ Route::get('/eventos', function () use ($eventos) {
     }
 });
 
+Route::get('/eventos/proximos', function() use($eventos) {
+    $hoje = date('Y-m-d');
+
+    $eventos = array_filter(
+        $eventos,
+        fn ($evento) => $evento['data'] >= $hoje
+    );
+
+    usort(
+        $eventos,
+        fn($a, $b) => $a['data'] <=> $b['data']
+    );
+
+    return view('eventos.index', [
+        'eventos' => $eventos,
+        'tipo' => null,
+        'disponibilidade' => null,
+    ]);
+});
+
 Route::get('/eventos/{id}', function (int $id) use ($eventos) {
     // Filtrar o evento pelo ID
     $evento = null;
