@@ -5,13 +5,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Eventos</title>
         {{-- Pico CSS --}}
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" rel="stylesheet">
     </head>
     <body>
         <main class="container">
             <p><a href="/" role="button" class="secondary">Voltar ao início</a></p>
-            <h1>Eventos</h1>
+            <h1>Eventos @if ($tipo) - ({{ ucfirst($tipo) }})@endif</h1>
 
+            <hr>
+                <nav>
+                    <a href="/eventos">Todos os eventos</a>
+                    <a href="/eventos?tipo=workshop">Workshops</a>
+                    <a href="/eventos?tipo=palestra">Palestras</a>
+                    <a href="/eventos?tipo=hackathon">Hackathons</a>
+                </nav>
+            </hr>
             <table>
                 <thead>
                     <tr>
@@ -25,10 +33,10 @@
                     @forelse($eventos as $evento)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $evento['titulo'] }}</td>
+                            <td><a href="/eventos/{{ $evento['id'] }}">{{ $evento['titulo'] }}</a></td>
                             <td>{{ date('d/m/Y', strtotime($evento['data'])) }}</td>
                             <td>
-                                @if ($evento['inscritos'] => $evento['vagas'])
+                                @if ($evento['inscritos'] > $evento['vagas'])
                                     <strong>Esgotado</strong>
                                 @else 
                                     {{ $evento['vagas'] - $evento['inscritos'] }}
@@ -37,7 +45,9 @@
 
                         </tr>
                     @empty
-                        <tr><td colspan="4">Não há eventos para mostrar.</td></tr>
+                        <tr>
+                            <td colspan="4">Não há eventos para mostrar.</td>
+                        </tr>
                     @endforelse
             </table>
         </main>
