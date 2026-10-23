@@ -47,6 +47,15 @@ $eventos = [
         'vagas' => 40, 
         'inscritos' => 9
     ],
+    [
+        'id' => 6,
+        'titulo' => 'Palestra: O futuro das tecnologias',
+        'tipo' => 'palestra',
+        'data' => '2026-12-14',
+        'local' => 'Auditório',
+        'vagas' => 40,
+        'inscritos' => 40
+    ],
 ];
 
 Route::get('/', function () {
