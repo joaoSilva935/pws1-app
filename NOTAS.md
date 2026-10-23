@@ -17,3 +17,7 @@ O '.env' nunca vai para o GitHub: já no .gitignore. Tem a APP_KEY e as credenci
 b2. Sem 'e()', /ola/<h1>Ana mostra "Ana" como título: o navegador interpreta o HTML. Um atacante pode enviar uma ligação com JavaScript (XSS). Com 'e()' aparece o texto "<h1>Ana".
 
 b5. /dobro/abc devolve 404: a restrição whereNumber faz com que a rota não corresponda.
+
+f1. se a rota /eventos/{id} não tivesse whereNumber('id') e estivesse escrita
+antes de /eventos/proximos, o que acontecia ao abrir /eventos/proximos? Porquê?
+--> Ao abrir '/eventos/proximos' com o whereNumber('id') faz com que rota segue pelo id dos próximos eventos que irão acontecer e se não estivesse em '/eventos/{id}' dava 404, porque sem o whereNumber('id') não mostrava.
