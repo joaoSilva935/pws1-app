@@ -54,7 +54,7 @@ $eventos = [
         'data' => '2026-12-14',
         'local' => 'Auditório',
         'vagas' => 40,
-        'inscritos' => 40
+        'inscritos' => 27
     ],
 ];
 
