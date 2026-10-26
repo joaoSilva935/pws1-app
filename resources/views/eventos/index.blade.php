@@ -15,19 +15,19 @@
             <hr>
                 <div class="grid">
                     <div>
-                        <p><a href="/eventos">Todos os eventos</a></p>
-                        <p><a href="/eventos">Disponíveis</a></p>
+                        <p><a href="{{ route('eventos.index') }}">Todos os eventos</a></p>
+                        <p><a href="{{ route('eventos.index', ['disponibilidade' => 'Disponíveis']) }}">Disponíveis</a></p>
                     </div>
                     <div>
-                        <p><a href="/eventos?tipo=workshop">Workshops</a></p>
-                        <p><a href="/eventos?disponibilidade=Esgotados">Esgotados</a></p>
+                        <p><a href="{{ route('eventos.index', ['tipo' => 'workshop']) }}">Workshops</a></p>
+                        <p><a href="{{ route('eventos.index', ['disponibilidade' => 'Esgotados']) }}">Esgotados</a></p>
                     </div>
                     <div>
-                        <p><a href="/eventos?tipo=palestra">Palestras</a></p>
-                        <p><a href="/eventos/proximos">Próximos eventos</a></p>
+                        <p><a href="{{ route('eventos.index', ['tipo' => 'palestra']) }}">Palestras</a></p>
+                        <p><a href="{{ route('eventos.proximos') }}">Próximos eventos</a></p>
                     </div>
                     <div>
-                        <p><a href="/eventos?tipo=hackathon">Hackathons</a></p> 
+                        <p><a href="{{ route('eventos.index', ['tipo' => 'hackathon']) }}">Hackathons</a></p> 
                     </div>
                 </div>
                 {{-- <nav>
