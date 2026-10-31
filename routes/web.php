@@ -2,11 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventoController;
+use App\Http\Controllers\InicioController;
 
 
-Route::get('/', function () {
-    return view('inicio');
-});
+Route::get('/', [InicioController::class, 'index'])
+    ->name('inicio');
 
 // Route::get('/ola', function () {
 //     return view('Olá mundo');
@@ -117,3 +117,6 @@ Route::get('/eventos/{id}', [EventoController::class, 'show'])
 // Route::get('/sobre', function() {
 //     return view('sobre');
 // });
+Route::fallback(function() {
+    return response()->view('errors.404', [], 404);
+});
