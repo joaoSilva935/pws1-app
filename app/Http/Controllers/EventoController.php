@@ -92,6 +92,31 @@ class EventoController extends Controller
 
         return null;
     }
+
+    public function porTipo(string $tipo): View 
+    {
+        $eventos = config('eventos');
+
+        // Obtenção de todos os tipos existentes
+        $tipos = array_column($eventos, 'tipo');
+
+        // Verificação se o tipo existir
+        if (!in_array($tipo, $tipos)) {
+            abort(404);
+        }
+
+        // Filtrar os eventos desse tipo
+        $eventos = array_filter(
+            $eventos,
+            fn ($evento) => $evento['tipo'] === $tipo
+        );
+
+        return view('eventos.index', [
+            'eventos' => $eventos,
+            'tipo' => $tipo,
+            'disponibilidade' => null,
+        ]);
+    }
     /**
      * Mostrar a forma para editar um recurso específico.
      */

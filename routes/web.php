@@ -79,6 +79,8 @@ Route::get('/eventos/proximos', [EventoController::class, 'proximos'])
     //     'disponibilidade' => null,
     // ]);
 
+Route::get('/eventos/tipo/{tipo}', [EventoController::class, 'porTipo'])
+    ->name('eventos.tipo');
 
 Route::get('/eventos/{id}', [EventoController::class, 'show'])
     ->whereNumber('id')
