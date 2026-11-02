@@ -24,4 +24,5 @@ f1. se a rota /eventos/{id} não tivesse whereNumber('id') e estivesse escrita
 antes de /eventos/proximos, o que acontecia ao abrir /eventos/proximos? Porquê?
 --> Ao abrir '/eventos/proximos' com o whereNumber('id') faz com que rota segue pelo id dos próximos eventos que irão acontecer e se não estivesse em '/eventos/{id}' dava 404, porque sem o whereNumber('id') não mostrava.
 
-desafioAutónomo. A rota '/eventos/tipo/{tipo}' não entra em conflito com o '/eventos/{id}', porque só segue pelo nome do tipo de evento (Mostra o evento, nome, data e vaga) e enquanto que o {id} só segue pelo número do evento e com todos os detalhes.
+# Desafio PL03
+A rota '/eventos/tipo/{tipo}' não entra em conflito com o '/eventos/{id}', porque a primeira tem três segmentos ('eventos', 'tipo' e o valor de '{tipo}'), enquanto a segunda tem dois ('eventos' e o valor de '{id}'). Além disso, '{id}' só aceita números devido a 'whereNumber('id')'.

@@ -95,24 +95,28 @@ class EventoController extends Controller
 
     public function porTipo(string $tipo): View 
     {
+        // Obtém os eventos definidos em config/eventos.php
         $eventos = config('eventos');
 
-        // Obtenção de todos os tipos existentes
+        // Reune os tipos existentes para validar o parâmetro recebido no URL
         $tipos = array_column($eventos, 'tipo');
 
-        // Verificação se o tipo existir
+        // Se o tipo não existir, apresentar um 404
         if (!in_array($tipo, $tipos)) {
             abort(404);
         }
 
-        // Filtrar os eventos desse tipo
+        // Mostrar apenas os eventos do tipo pedido
         $eventos = array_filter(
             $eventos,
             fn ($evento) => $evento['tipo'] === $tipo
         );
 
         return view('eventos.index', [
-            'eventos' => $eventos,
+            'eventos' => array_filter(
+                $eventos,
+                fn($evento) => $evento['tipo'] === $tipo
+            ),
             'tipo' => $tipo,
             'disponibilidade' => null,
         ]);
