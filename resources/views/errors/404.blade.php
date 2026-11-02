@@ -1,22 +1,11 @@
-<!DOCTYPE html>
-<html lang="pt-PT">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Página não encontrada</title>
-        {{-- Pico CSS --}}
-        <link href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" rel="stylesheet">
-    </head>
-    <body>
-        <main class="container">
-            <p><a href="/eventos" role="button" class="secondary">Voltar ao início</a></p>
-            <h1>404 - Página não encontrada</h1>
+@extends('layouts.app')
 
-            <p>A página que estás à procura não existe.</p>
+@section('titulo', '404 - Página não encontrada')
 
-            <hr>
-
-        </main>
-    </body>
-
-</html>
+@section('conteudo')
+    <p><a href="/eventos" role="button" class="secondary">Voltar aos eventos</a></p>
+    <h1>404 - Página não encontrada</h1>
+    <hr>
+    <p>A página que estás à procura não existe.</p>
+    <hr>
+@endsection
