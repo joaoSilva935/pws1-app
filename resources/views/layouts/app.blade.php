@@ -13,6 +13,7 @@
         <main class="container">
             @yield('conteudo')
         </main>
-
+        
+        @include('partials.rodape')
     </body>
 </html>
