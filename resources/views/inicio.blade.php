@@ -6,9 +6,9 @@
 <!-- Desafio autónomo: Uma cor por tipo, só nesta página -->
 @push('estilos')
     <style>
-        .etiqueta-workshop { color: #1f6f8b;}
-        .etiqueta-palestra { color: #8a2044;}
-        .etiqueta-hackathon { color: #8a5a00;}
+        .etiqueta-workshop { color: yellow;}
+        .etiqueta-palestra { color: cyan;}
+        .etiqueta-hackathon { color: blue;}
     </style>
 @endpush
 
