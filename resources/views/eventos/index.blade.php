@@ -3,7 +3,7 @@
 @section('titulo', 'Eventos')
 
 @section('conteudo')
-    <p><a href="/" role="button" class="secondary">Voltar ao início</a></p>
+    <p><a href="/" class="botao">Voltar ao início</a></p>
     <h1>Eventos @if ($tipo) - ({{ ucfirst($tipo) }})@endif</h1>
 
     <hr>
@@ -54,7 +54,7 @@
                 @foreach($eventos as $evento)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td><a href={{ route('eventos.show', $evento['id']) }}">{{ $evento['titulo'] }}</a></td>
+                        <td><a href="/eventos/{{ $evento['id'] }}">{{ $evento['titulo'] }}</a></td>
                         <td>{{ date('d/m/Y', strtotime($evento['data'])) }}</td>
                         <td>
                             @if ($evento['inscritos'] >= $evento['vagas'])
