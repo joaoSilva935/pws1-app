@@ -26,3 +26,10 @@ antes de /eventos/proximos, o que acontecia ao abrir /eventos/proximos? Porquê?
 
 # Desafio PL03
 A rota '/eventos/tipo/{tipo}' não entra em conflito com o '/eventos/{id}', porque a primeira tem três segmentos ('eventos', 'tipo' e o valor de '{tipo}'), enquanto a segunda tem dois ('eventos' e o valor de '{id}'). Além disso, '{id}' só aceita números devido a 'whereNumber('id')'.
+
+# Desafio PL04
+A diferença entre o @push e o @stack é que o @push serve para injetar blocos de código, como scripts do JavaScript e de folhas de estilo do CSS e o @stack serve literalmente para criar um espaço reservado no layout principal onde as outras páginas ou componentes podem injetar código dinamicamente. Enquanto que o @section serve para definir um bloco de conteúdo dinâmico a ser injetado num layout principal e o @yield serve para criar simplesmente espaços reservados num layout principal onde o conteúdo específico de outras páginas será injetado. Em termos de uso, o @push usaria para injetar um bloco de código da minha folha de estilos e configurar as cores, fontes e classes, o @stack para criar um espaço reservado no layout principal da minha página, o @section para definir um bloco de conteúdo para a minha página do site e até definindo o título da página e o @yield para definir a estrutura base do site, com o nome da secção dentro dos parenteses do @yield nos locais que mudam de página para página.
+
+e1. Ao mudar o título do evento 3, vi na lista dos eventos e o título na página de detalhes, o “<script>alert(“XSS”)</script>” juntamente com o título do evento e ficou nesta maneira e a razão de porque é que está assim escrito é que era para mostrar um alerta através de um script junto com o título do evento e ficou assim misturado, o script não deu.
+
+e2. Ao mudar o {{ $evento[‘titulo’] }} para {!! $evento[‘titulo’] !!}, ficou tudo normal e ao clicar no título, redirecionou-me para a página de detalhes do evento.
