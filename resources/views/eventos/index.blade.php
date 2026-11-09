@@ -70,7 +70,9 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4">Não há eventos para mostrar.</td>
+                            <td colspan="4">
+                                <x-alerta tipo="aviso">Não há eventos para mostrar.</x-alerta>
+                            </td>
                         </tr>
                     @endforelse
             </table>
