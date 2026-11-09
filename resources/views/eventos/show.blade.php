@@ -6,6 +6,7 @@
         
     <p><a href="{{ route('eventos.index') }}" role="button" class="primary">Voltar aos eventos</a></p>
 
+    <!-- Só aparece quando não há vagas disponíveis -->
     @if ($evento['inscritos'] >= $evento['vagas'])
         <x-alerta tipo="aviso">Este evento está esgotado.</x-alerta>
     @endif

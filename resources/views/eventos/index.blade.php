@@ -3,41 +3,44 @@
 @section('titulo', 'Eventos')
 
 @section('conteudo')
-        <p><a href="/" role="button" class="secondary">Voltar ao início</a></p>
-        <h1>Eventos @if ($tipo) - ({{ ucfirst($tipo) }})@endif</h1>
+    <p><a href="/" role="button" class="secondary">Voltar ao início</a></p>
+    <h1>Eventos @if ($tipo) - ({{ ucfirst($tipo) }})@endif</h1>
 
-        <hr>
-            <div class="grid">
-                <div>
-                    <p><a href="{{ route('eventos.index') }}">Todos os eventos</a></p>
-                    <p><a href="{{ route('eventos.index', ['disponibilidade' => 'Disponíveis']) }}">Disponíveis</a></p>
-                </div>
-                <div>
-                    <p><a href="{{ route('eventos.index', ['tipo' => 'workshop']) }}">Workshops</a></p>
-                    <p><a href="{{ route('eventos.index', ['disponibilidade' => 'Esgotados']) }}">Esgotados</a></p>
-                </div>
-                <div>
-                    <p><a href="{{ route('eventos.index', ['tipo' => 'palestra']) }}">Palestras</a></p>
-                    <p><a href="{{ route('eventos.proximos') }}">Próximos eventos</a></p>
-                </div>
-                <div>
-                    <p><a href="{{ route('eventos.index', ['tipo' => 'hackathon']) }}">Hackathons</a></p> 
-                </div>
+    <hr>
+        <div class="grid">
+            <div>
+                <p><a href="{{ route('eventos.index') }}">Todos os eventos</a></p>
+                <p><a href="{{ route('eventos.index', ['disponibilidade' => 'Disponíveis']) }}">Disponíveis</a></p>
             </div>
-            {{-- <nav>
-                <a href="/eventos">Todos os eventos</a>
-                <a href="/eventos?tipo=workshop">Workshops</a>
-                <a href="/eventos?tipo=palestra">Palestras</a>
-                <a href="/eventos?tipo=hackathon">Hackathons</a>
-            </nav> --}}
-        </hr>
+            <div>
+                <p><a href="{{ route('eventos.index', ['tipo' => 'workshop']) }}">Workshops</a></p>
+                <p><a href="{{ route('eventos.index', ['disponibilidade' => 'Esgotados']) }}">Esgotados</a></p>
+            </div>
+            <div>
+                <p><a href="{{ route('eventos.index', ['tipo' => 'palestra']) }}">Palestras</a></p>
+                <p><a href="{{ route('eventos.proximos') }}">Próximos eventos</a></p>
+            </div>
+            <div>
+                <p><a href="{{ route('eventos.index', ['tipo' => 'hackathon']) }}">Hackathons</a></p> 
+            </div>
+        </div>
+        {{-- <nav>
+            <a href="/eventos">Todos os eventos</a>
+            <a href="/eventos?tipo=workshop">Workshops</a>
+            <a href="/eventos?tipo=palestra">Palestras</a>
+            <a href="/eventos?tipo=hackathon">Hackathons</a>
+        </nav> --}}
+    </hr>
 
-        {{-- <hr>
-            <nav>
-                <a href="/eventos">Disponíveis</a>
-                <a href="/eventos?disponibilidade=Esgotados">Esgotados</a>
-            </nav>
-        </hr> --}}
+    {{-- <hr>
+        <nav>
+            <a href="/eventos">Disponíveis</a>
+            <a href="/eventos?disponibilidade=Esgotados">Esgotados</a>
+        </nav>
+    </hr> --}}
+    @if (empty($eventos))
+        <x-alerta tipo="aviso">Não há eventos para mostrar</x-alerta>
+    @else
         <table>
             <thead>
                 <tr>
@@ -48,10 +51,10 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse($eventos as $evento)
+                @foreach($eventos as $evento)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td><a href="/eventos/{{ $evento['id'] }}">{{ $evento['titulo'] }}</a></td>
+                        <td><a href={{ route('eventos.show', $evento['id']) }}">{{ $evento['titulo'] }}</a></td>
                         <td>{{ date('d/m/Y', strtotime($evento['data'])) }}</td>
                         <td>
                             @if ($evento['inscritos'] >= $evento['vagas'])
@@ -62,13 +65,9 @@
                         </td>
 
                     </tr>
-                @empty
-                    <tr>
-                        <td colspan="4">
-                            <x-alerta tipo="aviso">Não há eventos para mostrar.</x-alerta>
-                        </td>
-                    </tr>
-                @endforelse
-        </table>
+                
+                @endforeach
+        </table>        
+    @endif
 @endsection
    
