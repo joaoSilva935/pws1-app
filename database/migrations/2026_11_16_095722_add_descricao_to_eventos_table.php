@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::table('eventos', function (Blueprint $table) {
             // adicionar coluna descrição do tipo text
+            // que pode ser nula e deve vir depois da coluna local
             $table->text('descricao')->nullable()->after('local');
         });
     }
