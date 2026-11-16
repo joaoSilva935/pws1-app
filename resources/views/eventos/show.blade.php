@@ -13,9 +13,9 @@
 
     <h1>{{ $evento['titulo'] }}</h1>
 
-    <p><strong>Tipo:</strong> {{ $evento['tipo'] }}</p>
-    <p><strong>Data:</strong> {{ date('d/m/Y', strtotime($evento['data'])) }}</p>
-    <p><strong>Local:</strong> {{ $evento['local'] }}</p>
-    <p><strong>Inscritos:</strong> {{ $evento['inscritos'] }} de {{ $evento['vagas'] }}</p>
+    <p><strong>Tipo:</strong> {{ $evento->tipo }}</p>
+    <p><strong>Data:</strong> {{ date('d/m/Y', strtotime($evento->data)) }}</p>
+    <p><strong>Local:</strong> {{ $evento->local }}</p>
+    <p><strong>Inscritos:</strong> {{ $evento->inscritos }} de {{ $evento->vagas }}</p>
         
 @endsection

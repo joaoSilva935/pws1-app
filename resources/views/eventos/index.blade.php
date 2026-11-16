@@ -54,13 +54,13 @@
                 @foreach($eventos as $evento)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td><a href="/eventos/{{ $evento['id'] }}">{{ $evento['titulo'] }}</a></td>
-                        <td>{{ date('d/m/Y', strtotime($evento['data'])) }}</td>
+                        <td><a href="/eventos/{{ $evento->id }}">{{ $evento->titulo }}</a></td>
+                        <td>{{ date('d/m/Y', strtotime($evento->data)) }}</td>
                         <td>
-                            @if ($evento['inscritos'] >= $evento['vagas'])
+                            @if ($evento->inscritos >= $evento->vagas)
                                 <strong>Esgotado</strong>
                             @else 
-                                {{ $evento['vagas'] - $evento['inscritos'] }}
+                                {{ $evento->vagas - $evento->inscritos }}
                             @endif
                         </td>
 
