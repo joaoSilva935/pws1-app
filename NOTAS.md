@@ -33,3 +33,14 @@ A diferença entre o @push e o @stack é que o @push serve para injetar blocos d
 e1. Ao mudar o título do evento 3, vi na lista dos eventos e o título na página de detalhes, o “<script>alert(“XSS”)</script>” juntamente com o título do evento e ficou nesta maneira e a razão de porque é que está assim escrito é que era para mostrar um alerta através de um script junto com o título do evento e ficou assim misturado, o script não deu.
 
 e2. Ao mudar o {{ $evento[‘titulo’] }} para {!! $evento[‘titulo’] !!}, ficou tudo normal e ao clicar no título, redirecionou-me para a página de detalhes do evento.
+
+# Desafio PL05
+a3. A primeira linha da mensagem de erro é esta: "! Internal Server Error", "Illuminate\Database\QueryException
+vendor/laravel/framework/src/Illuminate/Database/Connection.php:864" e
+"SQLSTATE[HY000] [1049] Unknown database 'isla_eventos' (Connection: mysql, Host: 127.0.0.1, Port: 3306, Database: isla_eventos, SQL: select * from sessions where 'id = sGTFA0TwmgTv2Kxob3RxaCe1be9bCan5rAzRnrbA limit 1)". A razão desta mensagem de erro é que o próprio Laravel reconheceu que a base de dados era desconhecida, porque não tinha sido criada e de ela procurar a tabela sessions para as sessões, sendo que por causa disso, a tabela não existia.
+
+a4. A base de dados tem ao todo 10 tabelas.
+
+b2. ‘titulo’ -> varchar(150) com nenhum atributo; ‘data’ -> date com nenhum atributo e ‘vagas’ -> smallint(5) com o atributo *unsigned*. O campo ‘vagas’ está com o atributo *unsigned* porque só permite números que sejam positivos ou >= 0, não permite números negativos.
+
+c3. Este comando "php artisan migrate:fresh --seed" faz primeiro eliminar a migração da base de dados e recria e ao realizar em conjunto com o "--seed", primeiro apaga todas as tabelas, prepara a base de dados, cria a tabela de migração e por fim, mostra uma lista de todos que foram feitos, incluindo os creates e o add e se fosse num servidor com inscrições reais, não correria porque iria dar erros.
