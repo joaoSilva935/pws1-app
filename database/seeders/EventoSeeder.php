@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class EventoSeeder extends Seeder
 {
@@ -23,8 +23,8 @@ class EventoSeeder extends Seeder
             'inscritos' => 41,
             'created_at' => now(),
             'updated_at' => now()
-        ],
-        [
+        ]);
+        DB::table('eventos')->insert([
             'titulo' => 'Workshop de Laravel', 
             'tipo' => 'workshop',
             'data' => '2026-11-18',
@@ -34,8 +34,8 @@ class EventoSeeder extends Seeder
             'inscritos' => 12,
             'created_at' => now(),
             'updated_at' => now()
-        ],
-        [
+        ]);
+        DB::table('eventos')->insert([
             'titulo' => 'Palestra: Carreiras em Cibersegurança', 
             'tipo' => 'palestra',
             'data' => '2026-11-20', 
@@ -45,8 +45,8 @@ class EventoSeeder extends Seeder
             'inscritos' => 120,
             'created_at' => now(),
             'updated_at' => now()
-        ],
-        [
+        ]);
+        DB::table('eventos')->insert([
             'titulo' => 'Git e GitHub para iniciantes', 
             'tipo' => 'workshop',
             'data' => '2026-11-23',
@@ -56,8 +56,8 @@ class EventoSeeder extends Seeder
             'inscritos' => 25,
             'created_at' => now(),
             'updated_at' => now()
-        ],
-        [
+        ]);
+        DB::table('eventos')->insert([
             'titulo' => 'Conversa com antigos alunos DWDM', 
             'tipo' => 'palestra',
             'data' => '2026-12-02',
@@ -67,8 +67,8 @@ class EventoSeeder extends Seeder
             'inscritos' => 9,
             'created_at' => now(),
             'updated_at' => now()
-        ],
-        [
+        ]);
+        DB::table('eventos')->insert([
             'titulo' => 'Palestra: O futuro das tecnologias',
             'tipo' => 'palestra',
             'data' => '2026-12-14',
@@ -81,6 +81,6 @@ class EventoSeeder extends Seeder
         ]);
 
         // Chamar o seeder de eventos
-        $this->call(EventoSeeder::class);
+        // $this->call(EventoSeeder::class);
     }
 }

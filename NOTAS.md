@@ -43,4 +43,4 @@ a4. A base de dados tem ao todo 10 tabelas.
 
 b2. ‘titulo’ -> varchar(150) com nenhum atributo; ‘data’ -> date com nenhum atributo e ‘vagas’ -> smallint(5) com o atributo *unsigned*. O campo ‘vagas’ está com o atributo *unsigned* porque só permite números que sejam positivos ou >= 0, não permite números negativos.
 
-c3. Este comando "php artisan migrate:fresh --seed" faz primeiro eliminar a migração da base de dados e recria e ao realizar em conjunto com o "--seed", primeiro apaga todas as tabelas, prepara a base de dados, cria a tabela de migração e por fim, mostra uma lista de todos que foram feitos, incluindo os creates e o add e se fosse num servidor com inscrições reais, não correria porque iria dar erros.
+c3. Este comando "php artisan migrate:fresh --seed" faz primeiro eliminar todas as tabelas da base de dados e recria e ao realizar em conjunto com o "--seed", cria a tabela da migração, corre as migrações por fim, faz o seed da base de dados, incluindo os seeders e se fosse num servidor com inscrições reais, não correria porque iria dar erros.
