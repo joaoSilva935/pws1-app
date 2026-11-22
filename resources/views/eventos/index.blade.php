@@ -38,7 +38,7 @@
             <a href="/eventos?disponibilidade=Esgotados">Esgotados</a>
         </nav>
     </hr> --}}
-    @if (empty($eventos))
+    @if ($eventos->isEmpty())
         <x-alerta tipo="aviso">Não há eventos para mostrar</x-alerta>
     @else
         <table>
