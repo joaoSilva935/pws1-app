@@ -16,13 +16,17 @@
         <p>{{ $evento->descricao }}</p>
     @endif
 
-    <h1>{{ $tipo->nome }}</h1>
-
-    @foreach($eventos as $evento)
-        <x-cartao-evento :evento="$evento" />
-    @endforeach
-
-    <p><strong>Tipo:</strong> {{ $evento->tipo?->nome ?? 'Sem tipo' }}</p>
+    <p>
+        <strong>Tipo:</strong> 
+        {{--{{ $evento->tipo?->nome ?? 'Sem tipo' }}--}}
+        @if($evento->tipo)
+            <a href="{{ route('tipos.show', $evento->tipo) }}">
+                {{ $evento->tipo->nome }}
+            </a>
+        @else
+            Sem tipo
+        @endif
+    </p>
     <p><strong>Data:</strong> {{ $evento->data->format('d/m/Y') }}</p>
     <p><strong>Local:</strong> {{ $evento->local }}</p>
     <p><strong>Inscritos:</strong> {{ $evento->inscritos }} de {{ $evento->vagas }}</p>
