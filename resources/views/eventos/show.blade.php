@@ -17,7 +17,7 @@
     @endif
 
     <p><strong>Tipo:</strong> {{ $evento->tipo }}</p>
-    <p><strong>Data:</strong> {{ date('d/m/Y', strtotime($evento->data)) }}</p>
+    <p><strong>Data:</strong> {{ $evento->data->format('d/m/Y') }}</p>
     <p><strong>Local:</strong> {{ $evento->local }}</p>
     <p><strong>Inscritos:</strong> {{ $evento->inscritos }} de {{ $evento->vagas }}</p>
 @endsection

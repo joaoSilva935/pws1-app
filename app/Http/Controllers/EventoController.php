@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\DB;
+use App\Models\Evento;
 
 class EventoController extends Controller
 {
@@ -13,7 +14,7 @@ class EventoController extends Controller
         $tipo = $request->query('tipo');
         $disponibilidade = $request->query('disponibilidade');
 
-        $eventos = DB::table('eventos')
+        $eventos = Evento::query()
             ->when($tipo, fn ($consulta) => $consulta->where('tipo', $tipo))
             ->when($disponibilidade === 'Esgotados',
                 fn($consulta) => $consulta->whereColumn('inscritos', '>=', 'vagas'))
@@ -48,7 +49,7 @@ class EventoController extends Controller
     }
     public function proximos(): view
     {
-        $eventos = DB::table('eventos')
+        $eventos = Evento::query()
             ->where('data', '>=', now()->toDateString())
             ->orderBy('data')
             ->get();
@@ -88,15 +89,14 @@ class EventoController extends Controller
     /**
      * Mostrar um recurso específico.
      */
-    public function show(int $id): View
+    public function show(Evento $evento): View
     {
         // $evento = $this->procurar($id);
-        $evento = DB::table('eventos')
-            ->find($id);
+        $evento = Evento::find($id);
 
-        if($evento === null) {
-            abort(404);
-        }
+        // if($evento === null) {
+        //     abort(404);
+        // }
 
         return view('eventos.show', ['evento' => $evento]);
     }
