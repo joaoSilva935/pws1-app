@@ -35,6 +35,8 @@ e1. Ao mudar o título do evento 3, vi na lista dos eventos e o título na pági
 e2. Ao mudar o {{ $evento[‘titulo’] }} para {!! $evento[‘titulo’] !!}, ficou tudo normal e ao clicar no título, redirecionou-me para a página de detalhes do evento.
 
 # Desafio PL05
+Este seeder não deve correr sempre, porque gere aleatoriamente os dados de teste e se fossem executados todos os “db:seed” seriam criados novos eventos fictícios em cada execução, provocando duplicação e poluição da base de dados.
+
 a3. A primeira linha da mensagem de erro é esta: "! Internal Server Error", "Illuminate\Database\QueryException
 vendor/laravel/framework/src/Illuminate/Database/Connection.php:864" e
 "SQLSTATE[HY000] [1049] Unknown database 'isla_eventos' (Connection: mysql, Host: 127.0.0.1, Port: 3306, Database: isla_eventos, SQL: select * from sessions where 'id = sGTFA0TwmgTv2Kxob3RxaCe1be9bCan5rAzRnrbA limit 1)". A razão desta mensagem de erro é que o próprio Laravel reconheceu que a base de dados era desconhecida, porque não tinha sido criada e de ela procurar a tabela sessions para as sessões, sendo que por causa disso, a tabela não existia.
