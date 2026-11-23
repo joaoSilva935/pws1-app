@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 // use Illuminate\Support\Facades\DB;
 use App\Models\Evento;
+use App\Models\Tipo;
 
 class EventoController extends Controller
 {
@@ -15,7 +16,7 @@ class EventoController extends Controller
         $disponibilidade = $request->query('disponibilidade');
 
         $eventos = Evento::query()
-            ->when($tipo, fn ($consulta) => $consulta->where('tipo', $tipo))
+            ->when($tipo, fn ($consulta) => $consulta->whereRelation('tipo', 'slug', $tipo))
             ->when($disponibilidade === 'Esgotados',
                 fn($consulta) => $consulta->whereColumn('inscritos', '>=', 'vagas'))
             ->when($disponibilidade === 'Disponíveis',
@@ -45,6 +46,7 @@ class EventoController extends Controller
             'eventos' => $eventos,
             'tipo' => $tipo,
             'disponibilidade' => $disponibilidade,
+            'tipos' => Tipo::orderBy('nome')->get(),
         ]);
     }
     public function proximos(): view
@@ -70,6 +72,7 @@ class EventoController extends Controller
             'eventos' => $eventos,
             'tipo' => null,
             'disponibilidade' => null,
+            'tipos' => Tipo::orderBy('nome')->get(),
         ]);
     }
     /**
@@ -92,7 +95,7 @@ class EventoController extends Controller
     public function show(Evento $evento): View
     {
         // $evento = $this->procurar($id);
-        $evento = Evento::find($id);
+        // $evento = Evento::find($id);
 
         // if($evento === null) {
         //     abort(404);
@@ -131,7 +134,7 @@ class EventoController extends Controller
         //     fn ($evento) => $evento['tipo'] === $tipo
         // );
 
-        $eventos = DB::table('eventos')
+        $eventos = Evento::query()
             ->where('tipo', $tipo)
             ->orderby('data')
             ->get();
@@ -145,6 +148,7 @@ class EventoController extends Controller
             'eventos' => $eventos,
             'tipo' => $tipo,
             'disponibilidade' => null,
+            'tipos' => Tipo::orderBy('nome')->get(),
         ]);
     }
     /**

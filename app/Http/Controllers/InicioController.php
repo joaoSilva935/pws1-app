@@ -26,7 +26,7 @@ class InicioController extends Controller
         //     $proximos,
         //     fn ($a, $b) => strcmp($a['data'], $b['data'])
         // );
-        $proximos = Evento::query()
+        $proximos = Evento::query()->with('tipo')
             ->where('data', '>=', now()->toDateString())
             ->orderBy('data')
             ->limit(3)
