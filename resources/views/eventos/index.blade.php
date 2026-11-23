@@ -23,6 +23,15 @@
             <div>
                 <p><a href="{{ route('eventos.index', ['tipo' => 'hackathon']) }}">Hackathons</a></p> 
             </div>
+            <div>
+                @foreach($tipos as $tipoFiltro)
+                    <p>
+                        <a href="{{ route('eventos.index', ['tipo' => $tipoFiltro->slug]) }}">
+                            {{ $tipoFiltro->nome }}
+                        </a>
+                    </p>
+                @endforeach
+            </div>
         </div>
         {{-- <nav>
             <a href="/eventos">Todos os eventos</a>

@@ -135,7 +135,7 @@ class EventoController extends Controller
         // );
 
         $eventos = Evento::query()
-            ->where('tipo', $tipo)
+            ->whereRelation('tipo', 'slug', $tipo)
             ->orderby('data')
             ->get();
         

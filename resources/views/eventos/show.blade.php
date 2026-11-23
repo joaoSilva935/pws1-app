@@ -16,7 +16,13 @@
         <p>{{ $evento->descricao }}</p>
     @endif
 
-    <p><strong>Tipo:</strong> {{ $evento->tipo }}</p>
+    <h1>{{ $tipo->nome }}</h1>
+
+    @foreach($eventos as $evento)
+        <x-cartao-evento :evento="$evento" />
+    @endforeach
+
+    <p><strong>Tipo:</strong> {{ $evento->tipo?->nome ?? 'Sem tipo' }}</p>
     <p><strong>Data:</strong> {{ $evento->data->format('d/m/Y') }}</p>
     <p><strong>Local:</strong> {{ $evento->local }}</p>
     <p><strong>Inscritos:</strong> {{ $evento->inscritos }} de {{ $evento->vagas }}</p>
